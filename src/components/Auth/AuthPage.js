@@ -11,6 +11,7 @@ class AuthPage extends Component {
         isPasValid: false,
         isEmailValid: false,
         noValid: false,
+        allValid: false
     }
 
     componentDidMount() {
@@ -26,26 +27,21 @@ class AuthPage extends Component {
                                     persons.cell
                                     
                     )
-                    // console.log(this.state.isAllValid)
             })
     }
-
- 
 
     handelClick(e) {
-        if(!this.state.isEmailValid && !this.state.isPasValid) {
+        if(this.state.isEmailValid && this.state.isPasValid) {
             this.setState({
-                noValid:true
+                allValid: true
             })
-            e.preventDefault()
         } else {
             this.setState({
-                noValid: false
+                noValid: true
             })
+            e.preventDefault()
         }
     }
-
-
 
     emailControl(event) {
         if (event.target.value === this.props.userProps.email) {
